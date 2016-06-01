@@ -1,0 +1,81 @@
+\documentclass[6pt]{article}
+
+%Landscape
+\usepackage[margin=1cm,landscape]{geometry}
+% Collumn rulers
+\setlength{\columnseprule}{0.3pt}
+\def\columnseprulecolor{\color{grey}}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multicol} % For three collumns
+\usepackage{mcode} %For å skrive inn matlab-kode
+\usepackage{amsmath} %For \text
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}} % For \diff{}{}
+\usepackage{commath} % For \abs{}
+
+\usepackage{amsthm} %for theorem
+\theoremstyle{definition}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{definition}{Definition} %for definition
+\newtheorem*{definition*}{Definition} %for unnumbered definition
+    
+\usepackage{enumitem}
+    
+%Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%Turn off display of date in title
+\date{}
+
+% Less space above and below equations
+\AtBeginDocument{%
+  \setlength\abovedisplayskip{7pt}
+  \setlength\belowdisplayskip{7pt}}
+  
+
+
+\title{TMA4320 Cheat Sheet}
+
+\begin{document}
+
+% THree collumns
+\begin{multicols*}{3}
+
+\maketitle
+
+\input{solving_equations}
+\input{interpolation}
+\input{numerical_quadratures}
+\input{ODEs}
+\input{DFT}
+
+\end{multicols*}
+
+\end{document}

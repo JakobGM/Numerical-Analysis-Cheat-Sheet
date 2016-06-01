@@ -1,0 +1,54 @@
+\section{ODEs}
+% Should I add Leipshitz definiton?
+Solving the initial value problem
+$$
+\begin{cases}
+y' = f(t,y) \\
+y(a) = y_a \\
+t in [a,b]
+\end{cases}
+$$
+with...
+\subsubsection{Euler's method}
+% At the very least, backward/forward Euler.
+\begin{align*}
+w_0 = & y_0 \\
+w_{i+1} = & w_{i} + h f(t_i, w_i)
+\end{align*}
+
+\subsubsection{Backwards Euler Method}
+Use when the diff. equation is \textbf{stiff}, i.e. attracting solutions are surrounded with fast-changing nearby solutions, the linear part of $y$ on the r.h.s.is large and negative.
+\begin{align*}
+w_0 = &y_0 \\
+w_{i+1} = & w_{i} + h f(t_i, w_{i+1})
+\end{align*}
+Solving this implicit equation for $w_{i+1}$ might require the use of Newton's method.
+ 
+\subsubsection{Explicit Trapezoid Method}
+%Trapezoid method can also be easily stated if you remember the trapezoid quadrature/explicit Euler. 
+\begin{align*}
+w_0 &= y_0 \\
+w_{i+1} &= w_i h \frac{h}{2}(f(t_i,w_i)) + f(t_i + h, w_i + hf(t_i,w_i)))
+\end{align*}
+
+\subsubsection{Local and global error}
+%Concepts of local/global errors and how local truncation error can be derived for a given method using a Taylor series expansion. 
+\begin{definition}
+The \textbf{global truncation error} is defined as $g_i = \abs{w_i-y_i}$, and the \textbf{local truncation error} is defined as $e_{i+1} = \abs{w_{i+1} - z(t_{i+1})}$. $z$ is the correct solution of the one-step IVT starting at $w_i$.
+\end{definition}
+
+\subsubsection{Tayler Method of order $k$}
+\begin{align*}
+    w_0 & = y_0 \\
+    w_{i+1} & = w_i + h f(t_i, w_i) + \frac{h^2}{2} + ... + \frac{h^k}{k!}f^{(k-1)}(t_i, w_i),
+\end{align*}
+with a respective error term 
+$$
+y_{i+1} - w_{i+1}  =  \frac{h^{k+1}}{(k+1)!}y^{(k+11)}(c) = \mathcal{O}(h^{k+1}),
+$$
+where $c \in [t, t+h]$.
+
+%TODO: Should I add definition of Leipschitz and theorem 6.4 about global error?
+\subsubsection{Adaptive methods}
+%Idea of adaptive methods in general and Runge-Kutta in particular.
+Compare $e_i$ or $e_i/max(\abs{w_i}, \theta)$ with the error tolerance, and change $h_i$ as needed. 
