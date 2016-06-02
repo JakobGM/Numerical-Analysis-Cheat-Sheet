@@ -74,7 +74,7 @@ The FFT uses the following property in order to split DFT$(N)$ into two DFT$(N/2
 
 \subsection{Trigonometric interpolation}
 %Connection between Fourier transform, trigonometric interpolation, ...
-Given the interval $[c,d]$ and positive integer $n$, let $t_j = c + j(d-c)/n$ for $j = 0,...,n-1$, and let $\vect{x}=(x_0,...,x_{n-1})$ denote a vector of $n$ numbers. Define $\vec{a} + \vec{b}i = F_n \vec{x}$. Then the complex function
+Given the interval $[c,d]$ and positive integer $n$, let $t_j = c + j(d-c)/n$ for $j = 0,...,n-1$, and let $\vec{x}=(x_0,...,x_{n-1})$ denote a vector of $n$ numbers. Define $\vec{a} + \vec{b}i = F_n \vec{x}$. Then the complex function
 $$
 Q(t) = \frac{1}{\sqrt{n}} \sum_{k=0}^{n-1} (a_k + i b_k) e^{i 2\pi k (t-c)/(d-c)}
 $$
