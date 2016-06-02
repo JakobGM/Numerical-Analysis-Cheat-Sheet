@@ -90,5 +90,10 @@ satisfies $P(t_j) = x_j$ for $j = 0,...,n-1$, assuming $n$ is even. Using the co
     + \frac{a_{n/2}}{\sqrt{n}} \cos{\frac{n \pi (t-c)}{d-c}}
 \end{gather*}
 
-\subsubsection{Fourier filtering/compression}
+\subsubsection{Fourier filtering/compression relevant to the project}
 %... and a general idea about filtering/compression (~ at the level of the project).
+\begin{itemize}
+    \item \mcode{MATLAB} uses a non-unitary normalization for its Fourier transformation, such that $F_n x$ is computed by \mcode{fft(x)/sqrt(n)}, and $F_n^{-1} y$ by \mcode{ifft(y)*sqrt(n)}.
+    \item Given $n$ data points, the best least squares trigonometric function with $m < n$ terms can be found by interpolating with $n$ terms, but only keep the first $m$ terms (dropping the higher frequencies, called a \textbf{low pass filter}).
+    \item A \textbf{high pass filter} can be made by dropping the lower frequency components.
+\end{itemize}

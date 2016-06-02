@@ -4,23 +4,25 @@ The function $f(x)$ has a \textbf{root} at $x = r$ if $f(r) = 0$.
 \end{definition}
 
 \subsubsection{The Bisection Method}
-\includegraphics[scale=0.16]{images/bisection_method.png}
+\includegraphics[scale=0.17]{images/bisection_method.png}
 
-\begin{lstlisting}
-%Given initial interval [a,b] such that f(a)f(b)<0
-while (b-a)/2 < TOL
-    c = (a + b)/2;
+% Written pseudocode in MatLab pseudosyntax, men used the book instead (see above)
+% \begin{lstlisting}
+% %Given initial interval [a,b] such that f(a)f(b)<0
+% while (b-a)/2 < TOL
+%     c = (a + b)/2;
     
-    if f(c) == 0
-        %End
-    if f(a)*f(c) < 0
-        b = c;
-    else
-        a = c;
-end
-% The final interval [a,b] contains a root
-% The approximate root is (a + b)/2
-\end{lstlisting}
+%     if f(c) == 0
+%         %End
+%     if f(a)*f(c) < 0
+%         b = c;
+%     else
+%         a = c;
+% end
+% % The final interval [a,b] contains a root
+% % The approximate root is (a + b)/2
+% \end{lstlisting}
+
 \begin{gather*}
 \text{Solution error} = |x_c - r| < \frac{b-a}{2^{n+1}} \\
 \text{Function evaluations} = n + 2
