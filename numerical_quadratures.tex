@@ -69,7 +69,7 @@ For a general interval $[a,b]$, use the substitution $t=(2x-a-b)/(b-a)$ to trans
 
 \subsubsection{Adaptive quadrature}
 %Idea behind adaptive quadratures and how the integration error for a given quadrature is estimated by refining the integration interval. 
-Define the error estimation of the non-composite quadrature method $S_{[a,b]}$ on the interval $[a,b]$ as $E_S(a,b)$. For the trapezoid rule for instance, we have $E_{tr}(a,b) = -h^3 f''(c_0)/12$. The factor of error estimation reduction, $r_s$, when halving the interval length, $h \to h/2$, is equal to
+Denote the error estimation of the non-composite quadrature method $S_{[a,b]}$ on the interval $[a,b]$ as $E_S(a,b)$. For the trapezoid rule for instance, we have $E_{trap}(a,b) = -h^3 f''(c_0)/12$. The factor of error estimation reduction, $r_s$, when halving the interval length, $h \to h/2$, is equal to
 
 $$
 r_S = \abs{\frac{E_S(a,b) - (E_S(a,c) + E_S(c,b))}{E_S(a,c) + E_S(c,b)}}

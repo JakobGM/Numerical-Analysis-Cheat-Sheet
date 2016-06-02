@@ -25,6 +25,8 @@
 \newtheorem*{definition*}{Definition} %for unnumbered definition
     
 \usepackage{enumitem}
+\usepackage{hyperref} % For \url and \hyperref
+\usepackage{resizegather} % Scale gather environ to \linewidth
     
 %Turn off header and footer
 \pagestyle{empty}
@@ -44,6 +46,11 @@
                                 {1ex plus .2ex}%
                                 {\normalfont\small\bfseries}}
 \makeatother
+
+% Seperate conjugate command
+\newcommand*\conj[1]{\overline{#1}}
+% Seperate magnitude command
+\newcommand*\magn[1]{||#1||}
 
 % Don't print section numbers
 \setcounter{secnumdepth}{0}
@@ -69,7 +76,7 @@
 \begin{multicols*}{3}
 
 \maketitle
-
+TeX source @ \href{https://github.com/JakobGM/Numerical-Analysis-Cheat-Sheet}{GitHub.com/JakobGM/}
 \input{solving_equations}
 \input{interpolation}
 \input{numerical_quadratures}

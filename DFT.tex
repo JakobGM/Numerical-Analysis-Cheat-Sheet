@@ -1,3 +1,94 @@
 \section{DFT/FFT}
+%You should have a pretty good idea about the definition of DFT and be able to apply it, and derive its properties. Of course different definitions use different normalization constants, and the definition used in the book is absolutely symmetric with respect to direct/inverse transforms (I can never remember which one is which), so simply state the definitions of direct/inverse transforms that you are using at the exam! 
+\begin{definition}
+The \textbf{Discrete Fourier Transform} (DFT) of $x = [x_0,...,x_{n-1}]^T$ is the $n$-dimensional vector $y = [y_0,...,y_{n-1}]$, where $w = e^{-i2\pi/n}$ and
+$$
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1}x_j w^{jk}.
+$$
+\end{definition}
 
-You should have a pretty good idea about the definition of DFT and be able to apply it, and derive its properties. Of course different definitions use different normalization constants, and the definition used in the book is absolutely symmetric with respect to direct/inverse transforms (I can never remember which one is which), so simply state the definitions of direct/inverse transforms that you are using at the exam! Idea about FFT and its complexity. Connection between Fourier transform, trigonometric interpolation, and a general idea about filtering/compression (~ at the level of the project).
+Or in matrix terms
+\begin{gather*}
+\begin{bmatrix}
+    y_0 \\
+    y_1 \\
+    y—2 \\
+    \vdots \\
+    y_{n-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    a_0 + ib_0 \\
+    a_0 + ib_1 \\
+    a_0 + ib_2 \\
+    \vdots \\
+    a_{n-1 + ib_{n-1}}
+\end{bmatrix}
+=
+F_n
+\begin{bmatrix}
+    x_0 \\
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_{n-1}
+\end{bmatrix},
+\end{gather*}
+
+where the \textbf{Fourier matrix}, $F_n$, is equal to
+$$
+F_n = \frac{1}{\sqrt{n}}
+\begin{bmatrix}
+    w^0 & w^0 & w^0 & \hdots & w^0 \\
+    w^0 & w^1 & w^2 & \hdots & w^{n-1} \\
+    w^0 & w^2 & w^4 & \hdots & w^{2(n-1)} \\
+    w^0 & w^3 & w^6 & \hdots & w^{3(n-1)} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    w^0 & w^{n-1} & w^{2(n-1)} & \hdots & w^{(n-1)^2}
+\end{bmatrix}
+$$
+The \textbf{inverse Discrete Fourier Transform} is then given by $x = F_n^{-1}y$ or 
+$$
+x_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1}y_j w^{-jk}.
+$$
+
+\subsubsection{Useful properties of the DFT}
+\begin{itemize}
+    \item The inverse DFT is the matrix of complex conjugates of the entries of $F_n$: $F_n^{-1} = \conj{F}_n$.
+    \item The Fourier matrix is \textbf{unitary}, that is $\conj{F}_n^T F_n = I$.
+    \item The magnitude of a vector is: $\magn{v} = \sqrt{\conj{v}^T v}$.
+    \item There is no magnitude change during unitary matrix multiplication: $\magn{Fv}^2 = \conj{v}^T\conj{F}^T F v = \conj{v}^T v = \magn{v}^2$.
+    \item If $\vec{x}$ is real, then $y_0$ is real, and $y_{n-k} = \conj{y_k}$.
+    \item $\vec{x_1} \cdot \vec{x_2} = \vec{x_2}^T \vec{x_1}$ and $[F_n \vec{x}]^T = \vec{x}^TF_n^{-1}$.
+\end{itemize}
+
+\subsubsection{The Fast Fourier Transform}
+%Idea about FFT and its complexity. 
+The FFT uses the following property in order to split DFT$(N)$ into two DFT$(N/2)$s plus $2N-1$ extra operations.
+
+\begin{gather*}
+ \sum_{n=0}^{N-1}x_n e^{-2 \pi i n k / N} \\
+= \sum_{n=0}^{N/2-1} x_{2n}e^{-2 \pi i(2n)k/N} + \sum_{n=0}^{N/2-1} x_{2n+1}e^{-2 \pi i(2n+1)k/N} \\
+= \sum_{n=0}^{N/2-1} x_n^{\text{even}}e^{-2 \pi i n k /(N/2)} + e^{-2 \pi i k / N} \sum_{n=0}^{N/2-1} x_n^{\text{odd}}e^{-2 \pi i n k /(N/2)}
+\end{gather*}
+
+\subsubsection{Trigonometric interpolation}
+%Connection between Fourier transform, trigonometric interpolation, ...
+Given the interval $[c,d]$ and positive integer $n$, let $t_j = c + j(d-c)/n$ for $j = 0,...,n-1$, and let $x=(x_0,...,x_{n-1})$ denote a vector of $n$ numbers. Define $\vec{a} + \vec{b}i = F_n x$. Then the complex function
+$$
+Q(t) = \frac{1}{\sqrt{n}} \sum_{k=0}^{n-1} (a_k + i b_k) e^{i 2\pi k (t-c)/(d-c)}
+$$
+satisfies $Q(t_j) = x_j$ for $j= 0,...,n-1$. Furthermore, if the $x_j$ are real, the function
+\begin{gather*}
+P(t) = \frac{1}{\sqrt{n}} \sum_{k=0}^{n-1} \left( a_k \cos{\frac{2 \pi k (t-c)}{d-c}} - b_k \sin{\frac{2 \pi k (t-c)}{d-c}} \right)
+\end{gather*}
+satisfies $P(t_j) = x_j$ for $j = 0,...,n-1$, assuming $n$ is even. Using the cosine and sine addition formulae together with the fact that $y_{n-k} = \conj{y_k}$, $P(t)$ can be simplified to
+
+\begin{gather*}
+    P_n(t) = \frac{a_0}{\sqrt{n}}  
+    + \frac{2}{\sqrt{n}} \sum_{k=1}^{n/2-1} \left( a_k \cos{\frac{2 \pi k (t-c)}{d-c}} - b_k \sin{\frac{2 \pi k (t-c)}{d-c}} \right) \\
+    + \frac{a_{n/2}}{\sqrt{n}} \cos{\frac{n \pi (t-c)}{d-c}}
+\end{gather*}
+
+\subsubsection{Fourier filtering/compression}
+%... and a general idea about filtering/compression (~ at the level of the project).
