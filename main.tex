@@ -1,38 +1,40 @@
 \documentclass[6pt]{article}
 
-%Landscape
+%Landscape orientation
 \usepackage[margin=1cm,landscape]{geometry}
 % Collumn rulers
 \setlength{\columnseprule}{0.3pt}
 \def\columnseprulecolor{\color{grey}}
 
+%Userpackages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multicol} % For three collumns
-\usepackage{mcode} %For å skrive inn matlab-kode
+\usepackage{mcode} %Matlab code color and font
 \usepackage{amsmath} %For \text
-\usepackage{graphicx}
+\usepackage{graphicx} %For figures
 \graphicspath{ {images/} }
+\usepackage{commath} % For \abs{}
+\usepackage{amsthm} %for theorem
+\usepackage{enumitem}
+\usepackage{hyperref} % For \url and \hyperref
+\usepackage{resizegather} % Scale gather environ to \linewidth
+
+% Custom commands
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
 \newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}} % For \diff{}{}
-\usepackage{commath} % For \abs{}
-
-\usepackage{amsthm} %for theorem
+\newcommand*\conj[1]{\overline{#1}} % Seperate conjugate command
+\newcommand*\magn[1]{||#1||} % Seperate magnitude command
 \theoremstyle{definition}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{definition}{Definition} %for definition
 \newtheorem*{definition*}{Definition} %for unnumbered definition
-    
-\usepackage{enumitem}
-\usepackage{hyperref} % For \url and \hyperref
-\usepackage{resizegather} % Scale gather environ to \linewidth
-    
-%Turn off header and footer
-\pagestyle{empty}
 
-% Redefine section commands to use less space
-\makeatletter
+% Custom settings
+\pagestyle{empty} %Turn off header and footer
+
+\makeatletter % Redefine section commands to use less space
 \renewcommand{\section}{\@startsection{section}{1}{0mm}%
                                 {-1ex plus -.5ex minus -.2ex}%
                                 {0.5ex plus .2ex}%x
@@ -47,11 +49,6 @@
                                 {\normalfont\small\bfseries}}
 \makeatother
 
-% Seperate conjugate command
-\newcommand*\conj[1]{\overline{#1}}
-% Seperate magnitude command
-\newcommand*\magn[1]{||#1||}
-
 % Don't print section numbers
 \setcounter{secnumdepth}{0}
 
@@ -65,18 +62,16 @@
 \AtBeginDocument{%
   \setlength\abovedisplayskip{7pt}
   \setlength\belowdisplayskip{7pt}}
-  
-
 
 \title{TMA4320 Cheat Sheet}
 
 \begin{document}
 
-% THree collumns
+% Three collumns
 \begin{multicols*}{3}
 
 \maketitle
-TeX source @ \href{https://github.com/JakobGM/Numerical-Analysis-Cheat-Sheet}{GitHub.com/JakobGM/}
+v1.0 (TeX source @ \href{https://github.com/JakobGM/Numerical-Analysis-Cheat-Sheet}{GitHub.com/JakobGM/})
 \input{solving_equations}
 \input{interpolation}
 \input{numerical_quadratures}
