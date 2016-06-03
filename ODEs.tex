@@ -20,7 +20,7 @@ w_{i+1} &= w_{i} + h f(t_i, w_i)
 Use this method when the differential equation is \textbf{stiff}, i.e. attracting solutions are surrounded with fast-changing nearby solutions, i.e. when the linear part of $y$ on the r.h.s. is large and negative.
 \begin{align*}
 w_0 &= y_0 \\
-w_{i+1} &= w_{i} + h f(t_i, w_{i+1})
+w_{i+1} &= w_{i} + h f(t_{i+1}, w_{i+1})
 \end{align*}
 Solving this implicit equation for $w_{i+1}$ might require the iterative use of Newton's method.
  
